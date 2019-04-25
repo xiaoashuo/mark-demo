@@ -1484,7 +1484,13 @@
                 self.submitExportForm(ext, content);
                 return;
             }
-            uri = uri + window.btoa(content);
+	
+			if("exportText"==key){
+				 uri = uri + window.btoa(unescape(encodeURIComponent(content)));
+			}else{
+				 uri = uri + window.btoa(content);
+			}
+           
             $a = $h.create('a', {'href': uri, 'download': self.getFileName(key)}).appendTo('body');
             $a[0].click();
             $a.remove();
