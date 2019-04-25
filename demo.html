@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- BootStrap的css -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Font Awesome 5.x图标库（检查主题以更改此内容） -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">	    <!--  Krajee Markdown编辑器主库默认样式 -->
+		<link rel="stylesheet" href="css/markdown-editor.css" />
+		<!-- -突出显示代码样式插件提供的JS样式 -->
+		<link rel="stylesheet" href="plugins/highlight/highlight.min.css" />
+		
+		
+		
+		
+	</head>
+	<body>
+<!-- 		<textarea id="editor" class="markdown" rows="15"   data-language ="zh" data-theme="fa4" data-bs-version="3">a</textarea>
+ -->	   
+	   		<textarea id="editor" rows="15" ></textarea>
+	   
+	   <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-2">
+            <button type="submit" class="btn btn-block btn-primary"><i class="fa fa-check"></i> Submit</button>
+        </div>
+        <div class="col-sm-2">
+            <button type="reset" class="btn btn-block btn-default"><i class="fa fa-ban"></i> Reset</button>
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+ 
+	  <!-- jQuery JS Library -->
+	 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	
+	 <!-- -如果您需要净化HTML输出，请包含DOM purify插件（只有在markdown-it HTML输入时才需要）被允许）。必须在markdown-editor.js之前加载。 -->
+     <script src="plugins/purify/purify.min.js"></script>
+	 <!-- Markdown IT主库 -->
+	<script src="plugins/markdown-it/markdown-it.min.js"></script>
+	  <!-- 降价IT定义列表插件 -->
+	  <script src="plugins/markdown-it/markdown-it-deflist.min.js"></script>
+	   <!-- Markdown IT Footnote插件 -->
+	   <script src="plugins/markdown-it/markdown-it-footnote.min.js"></script>
+	  <!-- Markdown IT缩写插件 -->
+	  <script src="plugins/markdown-it/markdown-it-abbr.min.js"></script>
+	  <!-- Markdown IT下标插件 -->
+	  <script src="plugins/markdown-it/markdown-it-sub.min.js"></script>
+	  <!-- Markdown IT上标插件 -->
+	  <script src="plugins/markdown-it/markdown-it-sup.min.js"></script>
+	  <!-- Markdown IT下划线/插入文本插件 -->
+	  <script src="plugins/markdown-it/markdown-it-ins.min.js"></script>
+	  <!-- Markdown IT Mark Plugin -->
+	  <script src="plugins/markdown-it/markdown-it-mark.min.js"></script>
+	  <!-- Markdown IT SmartArrows插件 -->
+	  <script src="plugins/markdown-it/markdown-it-smartarrows.min.js"></script>
+	 <!-- 降价IT复选框插件 -->
+	 <script src="plugins/markdown-it/markdown-it-checkbox.min.js"></script>
+	 <!-- Markdown IT East Asian Characters Line Break Plugin -->
+	 <script src="plugins/markdown-it/markdown-it-cjk-breaks.min.js"></script>
+	 <!-- Markdown IT Emoji插件 -->
+	 <script src="plugins/markdown-it/markdown-it-emoji.min.js"></script>
+	   <!--   Twitter Emojis插件（如果你需要twitter emojis） -->
+	 <script src = "http://twemoji.maxcdn.com/2/twemoji.min.js?11.0" > </ script> 
+	 <!-- 突出显示代码样式的JS主插件库 -->
+	 <script src="plugins/highlight/highlight.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+	 <script src="js/markdown-editor.js"></script>
+	 <!-- 如果需要，可以选择包含theme.js脚本或theme.css用于不同的主题 -->
+	 <script src="themes/fa4/theme.js"></script>
+	 <!-- 如果需要，可以选择包含您语言的本地化脚本 -->
+    <script src="js/locales/zh.js"></script>
+	 <script>
+		 
+		$(function(){
+			   var options={
+				   language: "zh",                //语言格式
+				   theme:"fa4",                   //主题 默认fa5
+				   bsVersion: "3",                // default (uses bs4 version)
+				   defaultMode: 'editor',         //默认编辑模式
+				   enableUndoRedo: true,          //启用撤销
+				   enableSplitMode: true,         //启用分离模式
+				   enableLivePreview: undefined,  //启用动态预览
+				   enableScrollSync: true,        //启用同步滚动
+				   startFullScreen: false,        //开启全屏幕
+				   enableEmojies: true,           //启用表情
+				   useTwemoji: true,              //用Twitter家表情
+				   purifyHtml: true,              //启用净化html requires purify.js plugin
+				   showAlerts: true,              //显示弹出框
+				   exportUrl: "",                 //导出url 默认为''插件在内部呈现导出表单以将其提交到exportUrl服务器操作以处理导出内容以供下载。
+		           exportUrlMethod: 'post',       //方法 
+		         //  exportUrlAddlData: $h.EMPTY,   //导出url附加数据
+		         //  today: $h.EMPTY,               //今天 默认''
+		           alertFadeDuration: 2000,       //弹出淡入时间
+		           outputParseTimeout: 1800000,   //解析输出超时时间
+		           alertMsgCss: 'alert alert-danger',
+		           defaultButtonCss: 'btn btn-default btn-outline-secondary',
+		           defaultButtonGroupCss: 'btn-group md-btn-group',
+		           previewModeButtons: ['hint', 'fullscreen', 'mode', 'export'],
+		           buttonCss: {},
+		           buttonGroupCss: {},
+		           buttonAccessKeys: {},
+		           dropdownCss: {},
+		           icons: {},
+				   }
+			     var mm=  $("#editor").markdownEditor(options);
+				 $.fn.markdownEditor.h.CREDITS= '<a class="text-info" href="http://www.baidu.com">百度一下，生活愉快</a>',
+				 console.log(  $.fn.markdownEditor.h.CREDITS)
+		})
+			
+       $(".btn-primary").click(function(){
+		   alert($("#editor").val())
+	   })
+ 		 
+	 </script>
+	</body>
+</html>
