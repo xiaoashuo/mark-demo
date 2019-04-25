@@ -75,22 +75,37 @@ $.fn.markdownEditorLocales['zh-CN'] = $.fn.markdownEditorLocales['zh-Hans'] = $.
             hintInput: 'e.g. html, php, js,  java'
         }
     },
-    buttonActions: {
-        bold: {markup: '**(这里粗体文本)**'},
-        italic: {markup: '_(这里斜体文本)_'},
-        ins: {markup: '_(这里插入文本)_'},
-        del: {markup: '_(这里删除线文本)_'},
-        mark: {markup: '_(这里标记文本)_'},
-        sup: {markup: '_(这里上标文本)_'},
-        sub: {markup: '_(这里下表文本)_'},
-        paragraph: {markup: '\n(这里段落文本)\n'},
-        heading1: {markup: '# (一级标题)'},
-        heading2: {markup: '## (二级标题)'},
-        heading3: {markup: '### (三级标题)'},
-        heading4: {markup: '#### (四级标题)'},
-        heading5: {markup: '##### (五级标题)'},
-        heading6: {markup: '###### (六级标题)'}
-    },
+	buttonActions: {
+	    bold: {before: '**', after: '**', 'default': '**(这里粗体文本)**', skipSpaces: true},
+	    italic: {before: '_', after: '_', 'default': '_(这里斜体文本)_', skipSpaces: true},
+	    ins: {before: '++', after: '++', 'default': '_(这里插入文本)_', skipSpaces: true},
+	    del: {before: '~~', after: '~~', 'default': '_(这里删除线文本)_', skipSpaces: true},
+	    mark: {before: '==', after: '==', 'default': '_(这里标记文本)_', skipSpaces: true},
+	    sup: {before: '^', after: '^', 'default': '_(这里上标文本)_', skipSpaces: true},
+	    sub: {before: '~', after: '~', 'default': '_(这里下标文本)_', skipSpaces: true},
+	    paragraph: {before: '\n', after: '\n', 'default': '\n(这里段落文本)\n', inline: true},
+	    newline: {before: '', after: '  '},
+	    heading1: {before: '# ', 'default': '# (一级标题)', inline: true},
+	    heading2: {before: '## ', 'default': '## (二级标题)', inline: true},
+	    heading3: {before: '### ', 'default': '### (三级标题)', inline: true},
+	    heading4: {before: '#### ', 'default': '#### (四级标题)', inline: true},
+	    heading5: {before: '##### ', 'default': '##### (五级标题)', inline: true},
+	    heading6: {before: '###### ', 'default': '###### (六级标题)', inline: true},
+	    indent: function (str) {
+	        var ind = '  ', list;
+	        if (str.indexOf('\n') < 0) {
+	            str = (ind + str);
+	        } else {
+	            list = str.split('\n');
+	            $.each(list, function (k, v) {
+	                list[k] = ind + v;
+	            });
+	            str = list.join('\n');
+	        }
+	        return str;
+	    },
+	},
+
     templates: {
         exportHeader: '> - - -\n' +
         '> Markdown 导出\n' +
